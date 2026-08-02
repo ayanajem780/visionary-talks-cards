@@ -1,7 +1,7 @@
 :root {
   --ink: #14213D;
   --ink-soft: #223056;
-  --cream: #F7F4EC;
+  --cream: #FFFFFF;
   --cream-dim: #EDE8DA;
   --gold: #C89B4A;
   --gold-soft: #E6CE9A;
@@ -46,7 +46,7 @@ a { color: inherit; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(247,244,236,0.88);
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(20,33,61,0.08);
 }
