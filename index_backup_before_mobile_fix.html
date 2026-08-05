@@ -491,34 +491,21 @@ white-space: nowrap;
 .vtc-eco-chip--g { bottom: -6%; right: 16%; transform: rotate(-3deg); }
 
 @media (max-width: 900px) {
-.vtc-eco { padding: 100px 20px 60px; }
-.vtc-eco-header { margin-bottom: 70px; }
-
-.vtc-eco-stage-wrap {
-position: relative;
-height: calc(620px * var(--eco-s, 0.55));
+.vtc-eco { padding: 100px 20px 400px; }
+.vtc-eco-header { margin-bottom: 90px; }
+.vtc-eco-stage { min-height: auto; padding: 100px 0 0; }
+.vtc-eco-mac { width: 100%; }
+.vtc-eco-ipad { display: none; }
+.vtc-eco-phone { width: 130px; right: -2%; top: auto; bottom: -320px; transform: none; }
+.vtc-eco-chip { font-size: 10px; padding: 8px 11px; }
+.vtc-eco-chip--a { top: -10%; left: 4%; }
+.vtc-eco-chip--b { top: -14%; right: 4%; }
+.vtc-eco-chip--c { display: none; }
+.vtc-eco-chip--d { bottom: -360px; left: 4%; }
+.vtc-eco-chip--e { display: none; }
+.vtc-eco-chip--f { bottom: -400px; right: 4%; }
+.vtc-eco-chip--g { display: none; }
 }
-.vtc-eco-stage {
-position: absolute;
-left: 50%;
-top: 0;
-width: 820px;
-min-height: 620px;
-max-width: none;
-transform: translateX(-50%) scale(var(--eco-s, 0.55));
-transform-origin: top center;
-}
-.vtc-eco-ipad { width: 360px; max-width: none; left: 2%; top: 4%; }
-.vtc-eco-mac { width: 690px; max-width: none; }
-.vtc-eco-phone { width: 170px; max-width: none; right: 0; top: 50%; transform: translateY(-42%); }
-}
-
-@media (max-width: 430px) { .vtc-eco-stage-wrap { --eco-s: 0.50; } }
-@media (max-width: 400px) { .vtc-eco-stage-wrap { --eco-s: 0.465; } }
-@media (max-width: 375px) { .vtc-eco-stage-wrap { --eco-s: 0.435; } }
-@media (max-width: 360px) { .vtc-eco-stage-wrap { --eco-s: 0.415; } }
-@media (max-width: 340px) { .vtc-eco-stage-wrap { --eco-s: 0.39; } }
-@media (max-width: 320px) { .vtc-eco-stage-wrap { --eco-s: 0.365; } }
 </style>
 
 <div class="vtc-eco-bg"></div>
@@ -528,7 +515,6 @@ transform-origin: top center;
 <p class="vtc-eco-subtitle">Explore the first mockup of the Visionary Platform. This preview showcases our vision for the future and will continuously evolve with new features, screens, and improvements as we build the complete VTC ecosystem.</p>
 </div>
 
-<div class="vtc-eco-stage-wrap">
 <div class="vtc-eco-stage">
 
 <!-- iPad — Collaboration UI, behind the laptop -->
@@ -639,7 +625,6 @@ transform-origin: top center;
 <div class="vtc-eco-chip vtc-eco-chip--f"><span class="vtc-eco-chip-dot"></span><span>New Opportunity<small>Investors & Backers</small></span></div>
 <div class="vtc-eco-chip vtc-eco-chip--g"><span class="vtc-eco-chip-dot"></span><span>QR Card Scanned<small>47 times this month</small></span></div>
 
-</div>
 </div>
 </section>
   <section class="piliers" id="piliers">
