@@ -1263,23 +1263,11 @@ story_p14: "",
             </div>
           </div>
         </form>
-        <p class="vtc-modal-form-error" id="vtcFormError">Something went wrong.<br>Please try again.</p>
       </div>
 
       <div class="vtc-modal-footer">
         <button type="button" class="vtc-modal-btn vtc-modal-btn-ghost" id="vtcModalBack">Back</button>
-        <button type="button" class="vtc-modal-btn vtc-modal-btn-primary" id="vtcModalJoin" disabled>
-          <span class="vtc-modal-spinner" id="vtcModalSpinner" hidden></span>
-          <span id="vtcModalJoinLabel">Join the Waitlist</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="vtc-modal-step" data-step="3" hidden>
-      <div class="vtc-modal-success">
-        <h2 class="vtc-modal-title vtc-modal-title--step2">🎉 Welcome to VTC!</h2>
-        <p class="vtc-modal-success-text">You're officially on the waitlist.<br>We'll keep you updated about Visionary Talks, Visionary Cards and the VTC Platform.</p>
-        <button type="button" class="vtc-modal-btn vtc-modal-btn-primary" id="vtcModalDone">Continue Exploring</button>
+        <button type="button" class="vtc-modal-btn vtc-modal-btn-primary" id="vtcModalJoin" disabled>Join the Waitlist</button>
       </div>
     </div>
     </div>
@@ -1584,74 +1572,6 @@ story_p14: "",
     }
   }
 
-  /* ===== Step 3 / submission additions — new rules only ===== */
-
-  .vtc-modal-form-error {
-    display: none;
-    text-align: center;
-    font-family: var(--font-body, sans-serif);
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--rust, #B7502C);
-    background: rgba(183, 80, 44, 0.07);
-    border-radius: 10px;
-    padding: 12px 14px;
-    margin: 4px 0 0;
-    animation: vtcErrorIn 0.2s ease;
-  }
-  .vtc-modal-form-error.is-visible {
-    display: block;
-  }
-
-  .vtc-modal-spinner {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-top-color: #fff;
-    border-radius: 50%;
-    margin-right: 8px;
-    vertical-align: -2px;
-    animation: vtcSpin 0.7s linear infinite;
-  }
-  .vtc-modal-spinner[hidden] {
-    display: none;
-  }
-  @keyframes vtcSpin {
-    to { transform: rotate(360deg); }
-  }
-
-  .vtc-modal-btn-primary:disabled .vtc-modal-spinner {
-    border-color: rgba(255, 255, 255, 0.4);
-    border-top-color: #fff;
-  }
-
-  .vtc-modal-success {
-    text-align: center;
-    padding: 12px 0 4px;
-  }
-  .vtc-modal-success-text {
-    font-family: var(--font-body, sans-serif);
-    font-size: 15.5px;
-    line-height: 1.6;
-    color: var(--text-muted, #5B5A52);
-    margin: 4px 0 30px;
-  }
-  .vtc-modal-success .vtc-modal-btn-primary {
-    width: auto;
-    padding-left: 34px;
-    padding-right: 34px;
-  }
-
-  @media (max-width: 640px) {
-    .vtc-modal-success .vtc-modal-btn-primary { width: 100%; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .vtc-modal-spinner { animation: none !important; }
-    .vtc-modal-form-error { animation: none !important; }
-  }
-
   @media (max-width: 640px) {
     .vtc-modal { padding: 34px 22px 26px; border-radius: 18px; }
     .vtc-modal-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1781,7 +1701,7 @@ story_p14: "",
 
     if (targetStep === 1) {
       modal.setAttribute('aria-labelledby', 'vtcModalTitle');
-    } else if (targetStep === 2) {
+    } else {
       var firstField = document.getElementById('vtcFirstName');
       if (firstField) firstField.focus();
     }
@@ -1862,78 +1782,9 @@ story_p14: "",
         if (firstInvalid) firstInvalid.input.focus();
         return;
       }
-      submitWaitlistForm();
+      // Submission logic (sending the collected data) will be added
+      // in a later step — Step 2 only covers the form UI and validation.
     });
-  }
-
-  /* ============================================================
-     Step 2 -> submission to the Google Apps Script Web App
-  ============================================================ */
-  var WAITLIST_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwbg8k3xJE54F-XR77EgjC2kNMjqkftdJc55uewQ-Wd0Os--3x9i4ZwWhOCJIdiQIK8_A/exec';
-  var joinLabel = document.getElementById('vtcModalJoinLabel');
-  var joinSpinner = document.getElementById('vtcModalSpinner');
-  var formError = document.getElementById('vtcFormError');
-  var doneBtn = document.getElementById('vtcModalDone');
-
-  function setSubmitting(isSubmitting) {
-    joinBtn.disabled = isSubmitting;
-    backBtn.disabled = isSubmitting;
-    joinSpinner.hidden = !isSubmitting;
-    joinLabel.textContent = isSubmitting ? 'Joining...' : 'Join the Waitlist';
-  }
-
-  function showFormError(show) {
-    if (!formError) return;
-    formError.classList.toggle('is-visible', show);
-  }
-
-  function collectInterests() {
-    var selected = [];
-    chips.forEach(function (chip) {
-      if (chip.getAttribute('aria-pressed') === 'true') {
-        selected.push(chip.textContent.trim());
-      }
-    });
-    return selected.join(', ');
-  }
-
-  function submitWaitlistForm() {
-    showFormError(false);
-    setSubmitting(true);
-
-    var payload = {
-      firstName: firstNameInput.value.trim(),
-      lastName: lastNameInput.value.trim(),
-      email: emailInput.value.trim(),
-      city: document.getElementById('vtcCity').value.trim(),
-      profession: document.getElementById('vtcProfession').value.trim(),
-      interests: collectInterests()
-    };
-
-    // Sent as text/plain (not application/json) on purpose: Google Apps
-    // Script web apps don't handle the CORS preflight (OPTIONS request)
-    // that a real "application/json" Content-Type triggers. text/plain
-    // skips the preflight, and the script reads e.postData.contents and
-    // JSON.parses it itself on the Apps Script side.
-    fetch(WAITLIST_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('Request failed with status ' + res.status);
-        goToStep(3, false);
-      })
-      .catch(function () {
-        showFormError(true);
-      })
-      .finally(function () {
-        setSubmitting(false);
-      });
-  }
-
-  if (doneBtn) {
-    doneBtn.addEventListener('click', closeModal);
   }
 })();
 </script>
