@@ -1180,8 +1180,6 @@ story_p14: "",
       </svg>
     </button>
 
-    <div class="vtc-modal-steps" id="vtcModalSteps">
-    <div class="vtc-modal-step is-active" data-step="1">
     <div class="vtc-modal-header">
       <div class="vtc-modal-logo">VTC<span class="vtc-modal-logo-dot">.</span></div>
       <h2 class="vtc-modal-title" id="vtcModalTitle">Welcome to VTC</h2>
@@ -1213,67 +1211,8 @@ story_p14: "",
       <button type="button" class="vtc-modal-btn vtc-modal-btn-ghost" id="vtcModalCancel">Close</button>
       <button type="button" class="vtc-modal-btn vtc-modal-btn-primary" id="vtcModalContinue" disabled>Continue</button>
     </div>
-    </div>
-
-    <div class="vtc-modal-step" data-step="2" hidden>
-      <div class="vtc-modal-header">
-        <h2 class="vtc-modal-title vtc-modal-title--step2">Tell us about yourself</h2>
-      </div>
-
-      <div class="vtc-modal-body">
-        <form id="vtcModalForm" novalidate>
-          <div class="vtc-modal-field-row">
-            <div class="vtc-modal-field">
-              <label class="vtc-modal-label" for="vtcFirstName">First Name <span class="vtc-modal-req">*</span></label>
-              <input class="vtc-modal-input" type="text" id="vtcFirstName" name="firstName" autocomplete="given-name" required>
-              <p class="vtc-modal-error" id="vtcFirstNameError">Please enter your first name.</p>
-            </div>
-            <div class="vtc-modal-field">
-              <label class="vtc-modal-label" for="vtcLastName">Last Name <span class="vtc-modal-req">*</span></label>
-              <input class="vtc-modal-input" type="text" id="vtcLastName" name="lastName" autocomplete="family-name" required>
-              <p class="vtc-modal-error" id="vtcLastNameError">Please enter your last name.</p>
-            </div>
-          </div>
-
-          <div class="vtc-modal-field">
-            <label class="vtc-modal-label" for="vtcEmail">Email Address <span class="vtc-modal-req">*</span></label>
-            <input class="vtc-modal-input" type="email" id="vtcEmail" name="email" autocomplete="email" required>
-            <p class="vtc-modal-error" id="vtcEmailError">Please enter a valid email address.</p>
-          </div>
-
-          <div class="vtc-modal-field-row">
-            <div class="vtc-modal-field">
-              <label class="vtc-modal-label" for="vtcCity">City</label>
-              <input class="vtc-modal-input" type="text" id="vtcCity" name="city" autocomplete="address-level2">
-            </div>
-            <div class="vtc-modal-field">
-              <label class="vtc-modal-label" for="vtcProfession">Profession</label>
-              <input class="vtc-modal-input" type="text" id="vtcProfession" name="profession" autocomplete="organization-title">
-            </div>
-          </div>
-
-          <div class="vtc-modal-field">
-            <span class="vtc-modal-label">Interests</span>
-            <div class="vtc-modal-chips" id="vtcInterests" role="group" aria-label="Interests">
-              <button type="button" class="vtc-modal-chip" data-value="talks" aria-pressed="false">Visionary Talks</button>
-              <button type="button" class="vtc-modal-chip" data-value="cards" aria-pressed="false">Visionary Cards</button>
-              <button type="button" class="vtc-modal-chip" data-value="platform" aria-pressed="false">Visionary Platform</button>
-              <button type="button" class="vtc-modal-chip" data-value="partnerships" aria-pressed="false">Partnerships</button>
-              <button type="button" class="vtc-modal-chip" data-value="everything" aria-pressed="false">Everything</button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div class="vtc-modal-footer">
-        <button type="button" class="vtc-modal-btn vtc-modal-btn-ghost" id="vtcModalBack">Back</button>
-        <button type="button" class="vtc-modal-btn vtc-modal-btn-primary" id="vtcModalJoin" disabled>Join the Waitlist</button>
-      </div>
-    </div>
-    </div>
   </div>
 </div>
-
 
 <style>
   .vtc-modal-overlay {
@@ -1444,134 +1383,6 @@ story_p14: "",
     transform: none;
   }
 
-  /* ===== Step 2 additions — new rules only, nothing above this line was changed ===== */
-
-  .vtc-modal-steps {
-    position: relative;
-    overflow: hidden;
-  }
-  .vtc-modal-step {
-    width: 100%;
-  }
-  .vtc-modal-step[hidden] {
-    display: none;
-  }
-  .vtc-modal-title--step2 {
-    margin-bottom: 4px;
-  }
-
-  .vtc-modal-step-enter {
-    animation: vtcStepEnter 0.32s cubic-bezier(.2,.8,.2,1);
-  }
-  .vtc-modal-step-enter-back {
-    animation: vtcStepEnterBack 0.32s cubic-bezier(.2,.8,.2,1);
-  }
-  @keyframes vtcStepEnter {
-    from { opacity: 0; transform: translateX(20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes vtcStepEnterBack {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-
-  .vtc-modal-field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .vtc-modal-field {
-    margin-bottom: 18px;
-  }
-  .vtc-modal-label {
-    display: block;
-    font-family: var(--font-body, sans-serif);
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--ink, #14213D);
-    margin-bottom: 7px;
-  }
-  .vtc-modal-req {
-    color: var(--gold, #C89B4A);
-  }
-  .vtc-modal-input {
-    width: 100%;
-    font-family: var(--font-body, sans-serif);
-    font-size: 15px;
-    color: var(--ink, #14213D);
-    padding: 12px 14px;
-    border: 1.5px solid rgba(20, 33, 61, 0.14);
-    border-radius: 10px;
-    background: var(--cream, #fff);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  }
-  .vtc-modal-input:focus {
-    outline: none;
-    border-color: var(--ink, #14213D);
-    box-shadow: 0 0 0 3px rgba(20, 33, 61, 0.08);
-  }
-  .vtc-modal-input.is-invalid {
-    border-color: var(--rust, #B7502C);
-  }
-  .vtc-modal-input.is-invalid:focus {
-    box-shadow: 0 0 0 3px rgba(183, 80, 44, 0.12);
-  }
-
-  .vtc-modal-error {
-    display: none;
-    font-family: var(--font-body, sans-serif);
-    font-size: 12.5px;
-    color: var(--rust, #B7502C);
-    margin: 6px 0 0;
-    animation: vtcErrorIn 0.2s ease;
-  }
-  .vtc-modal-error.is-visible {
-    display: block;
-  }
-  @keyframes vtcErrorIn {
-    from { opacity: 0; transform: translateY(-3px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .vtc-modal-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-  }
-  .vtc-modal-chip {
-    font-family: var(--font-body, sans-serif);
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--ink, #14213D);
-    background: var(--cream, #fff);
-    border: 1.5px solid rgba(20, 33, 61, 0.14);
-    border-radius: 999px;
-    padding: 9px 16px;
-    cursor: pointer;
-    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease, transform 0.15s ease;
-  }
-  .vtc-modal-chip:hover {
-    border-color: rgba(20, 33, 61, 0.3);
-    transform: translateY(-1px);
-  }
-  .vtc-modal-chip[aria-pressed="true"] {
-    background: var(--ink, #14213D);
-    border-color: var(--ink, #14213D);
-    color: var(--cream, #fff);
-  }
-
-  @media (max-width: 640px) {
-    .vtc-modal-field-row { grid-template-columns: 1fr; gap: 0; }
-    .vtc-modal-chip { font-size: 12px; padding: 8px 13px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .vtc-modal-step-enter, .vtc-modal-step-enter-back, .vtc-modal-error, .vtc-modal-input, .vtc-modal-chip {
-      animation: none !important;
-      transition: none !important;
-    }
-  }
-
   @media (max-width: 640px) {
     .vtc-modal { padding: 34px 22px 26px; border-radius: 18px; }
     .vtc-modal-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1621,8 +1432,6 @@ story_p14: "",
     document.body.style.overflow = '';
     document.removeEventListener('keydown', onKeydown);
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
-    // Reset to Step 1 for the next time the modal is opened.
-    window.setTimeout(function () { goToStep(1, false); }, 300);
   }
 
   function onKeydown(e) {
@@ -1652,141 +1461,11 @@ story_p14: "",
   });
 
   continueBtn.addEventListener('click', function () {
-    goToStep(2, false);
+    // Step 2 (the actual sign-up form) will be implemented next.
+    // No action yet — Continue simply becomes enabled once a card is selected.
   });
-
-  /* ============================================================
-     Step navigation (Step 1 <-> Step 2), with a smooth height
-     transition on the shared steps container and a fade+slide on
-     the step content itself.
-  ============================================================ */
-  var stepsContainer = document.getElementById('vtcModalSteps');
-  var stepEls = overlay.querySelectorAll('.vtc-modal-step');
-  var currentStep = 1;
-
-  function goToStep(targetStep, isBack) {
-    if (targetStep === currentStep) return;
-    var current = overlay.querySelector('.vtc-modal-step[data-step="' + currentStep + '"]');
-    var next = overlay.querySelector('.vtc-modal-step[data-step="' + targetStep + '"]');
-    if (!current || !next) return;
-
-    var startHeight = stepsContainer.offsetHeight;
-    stepsContainer.style.height = startHeight + 'px';
-
-    current.hidden = true;
-    current.classList.remove('is-active');
-    next.hidden = false;
-    next.classList.add('is-active');
-
-    var endHeight = stepsContainer.scrollHeight;
-
-    // Force reflow so the height transition actually animates.
-    // eslint-disable-next-line no-unused-expressions
-    stepsContainer.offsetHeight;
-
-    stepsContainer.style.transition = 'height 0.32s cubic-bezier(.2,.8,.2,1)';
-    stepsContainer.style.height = endHeight + 'px';
-
-    next.classList.remove('vtc-modal-step-enter', 'vtc-modal-step-enter-back');
-    // eslint-disable-next-line no-unused-expressions
-    next.offsetHeight;
-    next.classList.add(isBack ? 'vtc-modal-step-enter-back' : 'vtc-modal-step-enter');
-
-    window.setTimeout(function () {
-      stepsContainer.style.transition = '';
-      stepsContainer.style.height = 'auto';
-    }, 340);
-
-    currentStep = targetStep;
-
-    if (targetStep === 1) {
-      modal.setAttribute('aria-labelledby', 'vtcModalTitle');
-    } else {
-      var firstField = document.getElementById('vtcFirstName');
-      if (firstField) firstField.focus();
-    }
-  }
-
-  /* ============================================================
-     Step 2 — interests (multi-select chips)
-  ============================================================ */
-  var chips = overlay.querySelectorAll('.vtc-modal-chip');
-  chips.forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      var pressed = chip.getAttribute('aria-pressed') === 'true';
-      chip.setAttribute('aria-pressed', pressed ? 'false' : 'true');
-    });
-  });
-
-  /* ============================================================
-     Step 2 — form validation
-     Required: First Name, Last Name, Email. City and Profession
-     are optional. "Join the Waitlist" stays disabled until all
-     required fields are valid.
-  ============================================================ */
-  var firstNameInput = document.getElementById('vtcFirstName');
-  var lastNameInput = document.getElementById('vtcLastName');
-  var emailInput = document.getElementById('vtcEmail');
-  var joinBtn = document.getElementById('vtcModalJoin');
-  var backBtn = document.getElementById('vtcModalBack');
-
-  var requiredFields = [
-    { input: firstNameInput, errorId: 'vtcFirstNameError', validate: function (v) { return v.trim().length > 0; } },
-    { input: lastNameInput, errorId: 'vtcLastNameError', validate: function (v) { return v.trim().length > 0; } },
-    { input: emailInput, errorId: 'vtcEmailError', validate: function (v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
-      } }
-  ];
-
-  function fieldIsValid(field) {
-    return field.validate(field.input.value);
-  }
-
-  function showError(field, show) {
-    var errorEl = document.getElementById(field.errorId);
-    if (!errorEl) return;
-    field.input.classList.toggle('is-invalid', show);
-    errorEl.classList.toggle('is-visible', show);
-  }
-
-  function updateJoinButtonState() {
-    var allValid = requiredFields.every(fieldIsValid);
-    joinBtn.disabled = !allValid;
-    return allValid;
-  }
-
-  requiredFields.forEach(function (field) {
-    field.input.addEventListener('input', function () {
-      if (field.input.classList.contains('is-invalid')) {
-        showError(field, !fieldIsValid(field));
-      }
-      updateJoinButtonState();
-    });
-    field.input.addEventListener('blur', function () {
-      showError(field, !fieldIsValid(field));
-    });
-  });
-
-  if (backBtn) {
-    backBtn.addEventListener('click', function () {
-      goToStep(1, true);
-    });
-  }
-
-  if (joinBtn) {
-    joinBtn.addEventListener('click', function () {
-      var allValid = updateJoinButtonState();
-      if (!allValid) {
-        var firstInvalid = requiredFields.find(function (f) { return !fieldIsValid(f); });
-        requiredFields.forEach(function (f) { showError(f, !fieldIsValid(f)); });
-        if (firstInvalid) firstInvalid.input.focus();
-        return;
-      }
-      // Submission logic (sending the collected data) will be added
-      // in a later step — Step 2 only covers the form UI and validation.
-    });
-  }
 })();
 </script>
 </body>
 </html>
+
